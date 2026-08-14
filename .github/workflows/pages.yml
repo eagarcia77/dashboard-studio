@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -24,15 +24,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Rebuild validated production page
+      - name: Prepare static site
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p _site
-          cat build/index.part1.b64 build/index.part2.b64 build/index.part3.b64 build/index.part4.b64 \
-            | base64 --decode \
-            | gunzip > _site/index.html
-          echo "abf2577735b8c9987b5efc7312834b57956aacd672aba3dbca67dff486eba933  _site/index.html" | sha256sum --check --strict
+          cp index.html styles.css app.js app-account.js app-dashboard.js app-ui.js _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
