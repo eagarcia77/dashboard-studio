@@ -29,7 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          cp index.html styles.css app.js app-account.js app-dashboard.js app-ui.js _site/
+          cp index.html styles.css app.js app-account.js app-dashboard.js app-ai.js app-ui.js _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
